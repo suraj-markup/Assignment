@@ -36,7 +36,7 @@ const Navbar = () => {
         <HStack spacing={8} alignItems={'center'} display={{ base: 'none', md: 'flex' }}>
         <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/'> Home </Link>
    
-        <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/services'> Book Marked </Link>
+        <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/bookmarks'> Book Marked </Link>
         
         
         </HStack>
