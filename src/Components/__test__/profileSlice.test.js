@@ -19,10 +19,10 @@ describe('profileSlice async actions', () => {
     const now = new Date();
     const mockResponse = mockdata.map(profile => ({
       ...profile,
-      id: profile.id + Math.random(), // Generate random ID
+      id: profile.id + Math.random(), 
       association: {
         ...profile.association,
-        logo: `${profile.association.logo}&X-Amz-Date=${now.toISOString()}`, // Add dynamic timestamp
+        logo: `${profile.association.logo}&X-Amz-Date=${now.toISOString()}`, 
       },
     }));
   
@@ -33,15 +33,13 @@ describe('profileSlice async actions', () => {
     await store.dispatch(fetchProfiles());
     const actions = store.getActions();
     
-    // Use toMatchObject for a more flexible comparison of nested objects
     expect(actions[1]).toMatchObject({ 
       type: fetchProfiles.fulfilled.type, 
-      payload: expect.any(Array) // Allow any array for payload
+      payload: expect.any(Array) 
     });
     
-    // Alternatively, you can use specific matchers for key properties
-    // expect(actions[1].payload[0].association.logo).toContain(now.toISOString());
   });
+
   it('should handle fetchProfiles.pending correctly', () => {
     const initialState = { items: [], loading: 'idle', error: null };
     const nextState = profileReducer(initialState, fetchProfiles.pending());

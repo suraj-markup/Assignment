@@ -120,7 +120,7 @@ const ProfileCard = ({ profile }) => {
           fontWeight={'400'}
           mr={2}
         >
-          Duration: {profile.average_consultation_duration}s
+          Duration: {profile.average_consultation_duration}
         </Badge>
         <Badge
           px={2}
