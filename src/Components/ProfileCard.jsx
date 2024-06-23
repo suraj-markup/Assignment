@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Box, Flex, IconButton, Image, Text, useColorModeValue, Button } from '@chakra-ui/react';
+import { Avatar, Box, Flex, IconButton, Image, Text, useColorModeValue, Button,Badge } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import useOnlineStatus from '../hooks/useOnlineStatus';
@@ -103,6 +103,34 @@ const ProfileCard = ({ profile }) => {
       :<Spinner size='xl' color='blue.500' thickness='4px' speed='0.65s' />}
       </Flex>
 
+      <Flex mt={6} justify={'center'}>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue('gray.50', 'gray.800')}
+          fontWeight={'400'}
+          mr={2}
+        >
+          Users: {profile.user}
+        </Badge>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue('gray.50', 'gray.800')}
+          fontWeight={'400'}
+          mr={2}
+        >
+          Duration: {profile.average_consultation_duration}s
+        </Badge>
+        <Badge
+          px={2}
+          py={1}
+          bg={useColorModeValue('gray.50', 'gray.800')}
+          fontWeight={'400'}
+        >
+          Lg: {profile.preferred_language}
+        </Badge>
+      </Flex>
       <Flex mt={8} direction={'row'} spacing={4} justify={'center'}>
         <Button
           colorScheme={isBookmarked ? 'yellow' : 'blue'}
