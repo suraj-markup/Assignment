@@ -26,7 +26,7 @@ const Navbar = () => {
     secondary: '#435585',
     tertiary: '#818FB4',
     quaternary: '#F5E8C7',
-    textColor: 'black',
+    textColor: 'white',
   };
 
   const colorsDark = {

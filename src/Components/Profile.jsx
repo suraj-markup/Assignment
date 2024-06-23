@@ -101,7 +101,7 @@ const Profile = () => {
   }
 
   return (
-    <Box mt={5} bg={useColorModeValue('gray.100', 'gray.800')} p={4} minH='100vh' bgGradient={colorMode === 'light' ? gradientLight : gradientDark}>
+    <Box mt={5} bg={useColorModeValue('gray.100', 'gray.800')} p={4} minH='100vh' bgGradient={colorMode === 'light' ?"linear(to-r, blue.700, blue.900)" : "linear(to-r, blue.900, gray.700)"}>
       <Heading as='h1' textAlign='center' color={colorMode === 'light' ? 'white' : 'gray.200'} mt={12} mb={8}>
         Profile List
       </Heading>
