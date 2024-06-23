@@ -75,7 +75,7 @@
         
         
         ```
-        npm install --save-dev redux-mock-store redux-thunk 
+        npm install --save-dev redux-mock-store redux-thunk axios-mock-adapter 
         ```
         
   
@@ -85,7 +85,7 @@
         
         
         ```
-        npm install --save-dev @babel/core @babel/preset-env babel-jest axios-mock-adapter redux-mock-store redux-thunk
+        npm install --save-dev @babel/core @babel/preset-env babel-jest 
         ```
      
         
