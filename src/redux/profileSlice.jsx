@@ -8,11 +8,13 @@ export const fetchProfiles = createAsyncThunk('profiles/fetchProfiles', async ()
 
 const profileSlice = createSlice({
   name: 'profiles',
+
   initialState: {
     items: [],
     loading: 'idle',
     error: null,
   },
+  
   reducers: {},
   extraReducers: (builder) => {
     builder

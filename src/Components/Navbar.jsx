@@ -1,7 +1,5 @@
-// src/Navbar.jsx
 import React from 'react';
-import useOnlineStatus from "../utils/useOnlineStatus";
-import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -9,65 +7,94 @@ import {
   IconButton,
   useDisclosure,
   Stack,
-  Link,
   Button,
   useColorMode,
   useColorModeValue,
-  Spacer,
+  Text,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
-
-
-
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const profiles = useSelector(state => state.bookmarks.items);
+
+  // Define colors for light and dark modes
+  const colorsLight = {
+    primary: '#363062',
+    secondary: '#435585',
+    tertiary: '#818FB4',
+    quaternary: '#F5E8C7',
+    textColor: 'black',
+  };
+
+  const colorsDark = {
+    primary: 'rgb(54, 48, 98)',
+    secondary: 'rgb(67, 85, 133)',
+    tertiary: 'rgb(129, 143, 180)',
+    quaternary: 'rgb(245, 232, 199)',
+    textColor: 'white',
+  };
+  
+  const bgColor = useColorModeValue(colorsLight.secondary, colorsDark.primary);
+  const textColor = useColorModeValue(colorsLight.textColor, colorsDark.textColor);
 
   return (
-    <Box as='div' bg={useColorModeValue('gray.100', 'gray.900')} px={4} position="fixed" w="100%" top={0} zIndex={5}>
-
-      <Flex h={16} alignItems={'center'}>
-        
-        {/* <Box >Logo</Box> */}
-        
-        <Spacer />
-        
-        <HStack spacing={8} alignItems={'center'} display={{ base: 'none', md: 'flex' }}>
-        <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/'> Home </Link>
-   
-        <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/bookmarks'> Book Marked </Link>
-        
-        
+    <Box
+      as='nav'
+      bg={bgColor}
+      boxShadow='md'
+      px={4}
+      position='fixed'
+      w='100%'
+      top={0}
+      zIndex={5}
+    >
+      <Flex h={16} alignItems='center' justifyContent='space-between'>
+        <HStack spacing={8} alignItems='center' display={{ base: 'none', md: 'flex' }}>
+          <Link to='/' style={{ color: textColor, textDecoration: 'none' }}>
+            Home
+          </Link>
+          <Link to='/bookmarks' style={{ color: textColor, textDecoration: 'none' }}>
+            Bookmarked ({profiles.length} items)
+          </Link>
         </HStack>
-        
-        <Spacer />
-        
-        <Flex alignItems={'center'}>
+
+        <Flex alignItems='center'>
           <Button onClick={toggleColorMode} mr={4}>
             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
           </Button>
           <IconButton
-            size={'md'}
+            size='md'
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
+            aria-label='Open Menu'
             display={{ md: 'none' }}
             onClick={isOpen ? onClose : onOpen}
-          /> 
+          />
         </Flex>
-      
-        </Flex>
+      </Flex>
 
-      {isOpen ? (
+      {isOpen && (
         <Box pb={4} display={{ md: 'none' }}>
-          <Stack as={'nav'} spacing={4} >
-            <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/'> Home </Link>
-            <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/about'> About </Link>
-            <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/services'> Services </Link>
-            <Link px={2} py={1}  rounded={'md'} _hover={{ bg: useColorModeValue('gray.200', 'gray.700'),}} href='/contact'> Contact </Link>
+          <Stack as='nav' spacing={4}>
+            <Link
+              to='/'
+              style={{ color: textColor, textDecoration: 'none' }}
+              onClick={onClose}
+            >
+              Home
+            </Link>
+            <Link
+              to='/bookmarks'
+              style={{ color: textColor, textDecoration: 'none' }}
+              onClick={onClose}
+            >
+              Bookmarked ({profiles.length} items)
+            </Link>
           </Stack>
         </Box>
-      ) : null}
+      )}
     </Box>
   );
 };

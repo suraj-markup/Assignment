@@ -13,7 +13,7 @@ const bookmarkSlice = createSlice({
       state.items = state.items.filter(item => item.id !== action.payload.id);
     },
     clearBookmarks: (state) => {
-      state.items = [];
+      state.items = []; 
     },
   },
 });
